@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing build dependencies...
+  pre_build:
+    commands:
+      - echo Preparing build environment...
+      - echo Started build phase at `date`
+  build:
+    commands:
+      - echo Build in progress...
+      - echo Copying web assets...
+  post_build:
+    commands:
+      - echo Build completed successfully on `date`
+
+artifacts:
+  files:
+    - '**/*'
