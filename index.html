@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AWS CI/CD Demo Pipeline</title>
+
+  <title>GitHub Actions CI/CD Demo</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --bg-gradient: linear-gradient(
+        135deg,
+        #0f172a 0%,
+        #1e1b4b 50%,
+        #0f172a 100%
+      );
       --card-bg: rgba(30, 41, 59, 0.7);
       --card-border: rgba(255, 255, 255, 0.1);
       --primary: #6366f1;
@@ -27,7 +38,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: "Inter", sans-serif;
       background: var(--bg-gradient);
       color: var(--text-main);
       min-height: 100vh;
@@ -85,7 +96,7 @@
     p.subtitle {
       font-size: 1.125rem;
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -113,9 +124,8 @@
 
     .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
-      position: relative;
     }
 
     .step-card {
@@ -135,7 +145,7 @@
     }
 
     .step-card::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -164,7 +174,7 @@
     .step-desc {
       font-size: 0.85rem;
       color: var(--text-muted);
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .config-grid {
@@ -191,14 +201,14 @@
     }
 
     .code-title {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: "JetBrains Mono", monospace;
       font-size: 0.875rem;
       color: var(--accent);
       font-weight: 500;
     }
 
     code {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: "JetBrains Mono", monospace;
       font-size: 0.825rem;
       color: #cbd5e1;
       line-height: 1.6;
@@ -214,90 +224,228 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.2); }
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+      }
     }
 
     @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .pipeline-visual {
+        padding: 1.25rem;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <div class="container">
+
     <header>
+
       <div class="badge">
         <span class="badge-dot"></span>
         Pipeline Active & Deployed
       </div>
-      <h1>AWS CI/CD Automation Demo</h1>
-      <p class="subtitle">Automated deployment powered by AWS CodeCommit / GitHub, AWS CodeBuild, and AWS CodeDeploy.</p>
+
+      <h1>GitHub Actions CI/CD Demo</h1>
+
+      <p class="subtitle">
+        Automated CI/CD deployment using GitHub Actions,
+        Amazon EC2, SSH, SCP, and Apache HTTP Server.
+      </p>
+
     </header>
 
     <main>
+
       <section class="pipeline-visual">
+
         <div class="pipeline-title">
           ⚡ Continuous Integration & Deployment Flow
         </div>
+
         <div class="steps-grid">
+
           <div class="step-card">
+
+            <div class="step-icon">📂</div>
+
+            <div class="step-name">
+              1. Source
+            </div>
+
+            <div class="step-desc">
+              Code is stored in a GitHub repository.
+              A push to the main branch automatically
+              triggers the GitHub Actions workflow.
+            </div>
+
+          </div>
+
+
+          <div class="step-card">
+
+            <div class="step-icon">⚙️</div>
+
+            <div class="step-name">
+              2. GitHub Actions
+            </div>
+
+            <div class="step-desc">
+              GitHub Actions checks out the latest code
+              and runs automated tests to verify the application.
+            </div>
+
+          </div>
+
+
+          <div class="step-card">
+
             <div class="step-icon">🚀</div>
-            <div class="step-name">1. Source</div>
-            <div class="step-desc">Code pushed to repository triggers the AWS CodePipeline.</div>
+
+            <div class="step-name">
+              3. Deploy
+            </div>
+
+            <div class="step-desc">
+              GitHub Actions securely transfers the website
+              files to the Amazon EC2 server using SSH and SCP.
+            </div>
+
           </div>
+
+
           <div class="step-card">
-            <div class="step-icon">🛠️</div>
-            <div class="step-name">2. Build</div>
-            <div class="step-desc">AWS CodeBuild executes <code>buildspec.yml</code> to package artifacts.</div>
+
+            <div class="step-icon">🌐</div>
+
+            <div class="step-name">
+              4. Apache Server
+            </div>
+
+            <div class="step-desc">
+              Apache HTTP Server serves the deployed website
+              from the EC2 instance on port 80.
+            </div>
+
           </div>
-          <div class="step-card">
-            <div class="step-icon">📦</div>
-            <div class="step-name">3. Deploy</div>
-            <div class="step-desc">AWS CodeDeploy uses <code>appspec.yml</code> and lifecycle scripts to update EC2.</div>
-          </div>
+
         </div>
+
       </section>
+
 
       <section class="config-grid">
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-title">buildspec.yml</span>
-          </div>
-          <code>version: 0.2
-phases:
-  build:
-    commands:
-      - echo Packaging artifacts...
-artifacts:
-  files:
-    - '**/*'</code>
-        </div>
 
         <div class="code-block">
+
           <div class="code-header">
-            <span class="code-title">appspec.yml</span>
+            <span class="code-title">
+              GitHub Actions Workflow
+            </span>
           </div>
-          <code>version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /var/www/html
-hooks:
-  ApplicationStart:
-    - location: scripts/start_server.sh</code>
+
+          <code>
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - Checkout code
+      - Test application
+      - Copy files to EC2
+      - Deploy to EC2
+          </code>
+
         </div>
+
+
+        <div class="code-block">
+
+          <div class="code-header">
+            <span class="code-title">
+              EC2 Deployment
+            </span>
+          </div>
+
+          <code>
+Server:
+Amazon EC2
+
+Operating System:
+Amazon Linux 2023
+
+Web Server:
+Apache HTTP Server
+
+Apache Service:
+httpd
+
+Web Directory:
+/var/www/html
+
+Deployment:
+SSH + SCP
+          </code>
+
+        </div>
+
       </section>
+
     </main>
 
+
     <footer>
-      <p>AWS CI/CD Pipeline Demo &bull; Built with AWS CodePipeline</p>
+
+      <p>
+        GitHub Actions CI/CD Pipeline Demo
+        &bull;
+        Deployed on Amazon EC2
+      </p>
+
     </footer>
+
   </div>
+
 </body>
 </html>
