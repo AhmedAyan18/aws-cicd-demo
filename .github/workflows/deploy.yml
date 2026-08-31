@@ -37,4 +37,11 @@ jobs:
           script: |
             sudo cp /tmp/index.html /var/www/html/index.html
             sudo systemctl restart httpd
+
+            echo "Files in /var/www/html:"
+            ls -la /var/www/html
+
+            echo "Testing website:"
+            curl http://localhost
+
             echo "Deployment completed successfully!"
