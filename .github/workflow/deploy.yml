@@ -1,3 +1,4 @@
+```yaml
 name: CI/CD Pipeline
 
 on:
@@ -26,12 +27,25 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd /var/www/html
-            sudo rm -rf *
-            sudo git clone https://github.com/AhmedAyan18/aws-cicd-demo.git temp
-            sudo cp -r temp/* .
-            sudo rm -rf temp
-            sudo systemctl restart apache2
+            sudo rm -rf /var/www/html/*
+            sudo systemctl restart httpd
 
-      - name: Deployment successful
-        run: echo "Application deployed successfully!"
+      - name: Copy website files to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "*"
+          target: "/var/www/html/"
+
+      - name: Restart Apache
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo systemctl restart httpd
+            echo "Deployment completed successfully!"
+```
